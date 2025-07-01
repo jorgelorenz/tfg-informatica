@@ -1,30 +1,9 @@
-#En este fichero saco datos y gráficas de retornos en las ventanas que quiero estudiar
-
-###Lista stocks:
-### Compañías
-### Índices
-
-###Por cada stock coger varias ventanas temporales, escenarios disintos podemos basarnos en https://www.sas.upenn.edu/~fdiebold/papers/misc/Brownlees.pdf
-
-### Para elegir ventanas temporales traemos los datos y graficamos para elegir escenarios normales y de estrés. 
-
-# def get_arch_model(ticker, start_date, end_date):
-#     sp500 = yf.download(ticker, start=start_date, end=end_date)
-#     returns = 100 * sp500['Close'].pct_change().dropna()
-#     am = arch_model(returns)
-
-#     res = am.fit()
-
-#     print(res.summary())
-
 import datetime as dt
 import yfinance as yf
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-# from arch import arch_model
-# from fpdf import FPDF
 from PIL import Image
 from dateutil.parser import parse
 import numpy as np
@@ -115,11 +94,6 @@ def plot_daily_returns(ticker, start_date, end_date, sector='', study_windows=No
     print(f"Gráfico guardado en: {output_path}")
     
 def get_sp500_tickers_by_sector():
-    """
-    Obtiene los tickers de las compañías del S&P 500 agrupados por sector.
-
-    :return: Diccionario con sectores como claves y listas de tickers como valores.
-    """
     # URL oficial con la lista del S&P 500 desde Wikipedia
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     
@@ -133,11 +107,6 @@ def get_sp500_tickers_by_sector():
     return tickers_by_sector
 
 def get_major_indices_tickers():
-    """
-    Devuelve tickers de índices bursátiles importantes.
-
-    :return: Diccionario con nombres de índices y sus tickers.
-    """
     indices = {
         "S&P 500": "^GSPC",
         # "Dow Jones Industrial Average": "^DJI",
